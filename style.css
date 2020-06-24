@@ -1,0 +1,26 @@
+@font-face {
+  src: url(fonts/NintendBold-RM8E.ttf);
+  font-family: nintendo;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: nintendo, Arial, Helvetica, sans-serif;
+  background: linear-gradient(0.25turn, #f5efef, #feada6, #ff512f);
+};
+
+.main-box {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.title-box {
+  margin: 20px;
+  text-align: center;
+}
