@@ -46,7 +46,7 @@ const gameBoardObj = (() => {
       btnControl.render();
     } else if (div3.innerHTML === "X" && div5.innerHTML === "X" && div7.innerHTML === "X") {
       btnControl.render();
-    } else if()
+    } 
 
   }
 
@@ -67,10 +67,13 @@ const gameBoardObj = (() => {
       btnControl.render2();
     } else if (div3.innerHTML === "O" && div5.innerHTML === "O" && div7.innerHTML === "O") {
       btnControl.render2();
-    } else if {
-      
+    } else if (
+      div1.innerHTML && div2.innerHTML && div3.innerHTML && div4.innerHTML && div5.innerHTML && div6.innerHTML && div7.innerHTML && div8.innerHTML && div9.innerHTML
+    ) {
+      btnControl.render3();
     }
   }
+
 
 
   board.forEach(button => {
