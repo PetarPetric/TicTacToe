@@ -14,9 +14,9 @@ const gameBoardObj = (() => {
   const div8 = document.getElementById('b8');
   const div9 = document.getElementById('b9');
   const board = document.querySelectorAll('.cell');
-  
+
   const gameBoardArr = [div1, div2, div3, div4, div5, div6, div7, div8, div9];
-  
+
   function resetBoard() {
     div1.innerHTML = "";
     div2.innerHTML = "";
@@ -46,7 +46,7 @@ const gameBoardObj = (() => {
       btnControl.render();
     } else if (div3.innerHTML === "X" && div5.innerHTML === "X" && div7.innerHTML === "X") {
       btnControl.render();
-    } 
+    }
 
   }
 
@@ -78,18 +78,18 @@ const gameBoardObj = (() => {
 
   board.forEach(button => {
     button.addEventListener('click', (e) => {
-    if(playerOneTurn === true && e.target.innerHTML === ""){
-      e.target.innerHTML = "X"
-      playerRound();
-      checkForStatusX();
-      checkForStatusO();
+      if (playerOneTurn === true && e.target.innerHTML === "") {
+        e.target.innerHTML = "X"
+        playerRound();
+        checkForStatusX();
+        checkForStatusO();
 
-    } else if(e.target.innerHTML === "") {
-      e.target.innerHTML = "O"
-      playerRound();
-      checkForStatusX();
-      checkForStatusO();
-      }            
+      } else if (e.target.innerHTML === "") {
+        e.target.innerHTML = "O"
+        playerRound();
+        checkForStatusX();
+        checkForStatusO();
+      } 
     });
   });
   return {
@@ -101,7 +101,7 @@ const gameBoardObj = (() => {
 
 const playerFac = (player, score) => {
   score = 0;
-  return {player, score};
+  return { player, score };
 };
 
 const btnControl = (() => {
@@ -117,59 +117,63 @@ const btnControl = (() => {
   const sumResults = [];
 
   startBtn.addEventListener('click', () => {
-      const player1 = playerFac(
-        playerField1.value,
-        
-      );
-      const player2 = playerFac (
-        playerField2.value,
-      );
-      playerOneTurn = true;
-      sumResults.push(player1, player2);
-      startBtn.style.display = "none";
-      restartBtn.style.display = "flex";
-      gameBox.style.display = "flex";
-      modWin.innerHTML = "";
-      gameBoardObj.resetBoard();
-  })
-  restartBtn.addEventListener('click', () => {
+    const player1 = playerFac(
+      playerField1.value,
+
+    );
+    const player2 = playerFac(
+      playerField2.value,
+    );
+    if (playerField1.value === "" || playerField2.value === "") {
+    alert("Please enter your name");
+  } else {  
     playerOneTurn = true;
-    startBtn.style.display = "flex";
+    sumResults.push(player1, player2);
+    startBtn.style.display = "none";
+    restartBtn.style.display = "flex";
     gameBox.style.display = "flex";
     modWin.innerHTML = "";
-    restartBtn.style.display = "none";
-    sumResults.pop();
-    sumResults.shift();
     gameBoardObj.resetBoard();
-  });
-
-  function render() {
-    nameWinner.innerHTML = "";
-    gameBox.style.display = "none";
-    modWin.append(nameWinner);
-    nameWinner.append(player1.value + " is the winner!");
-    
   }
+})
+restartBtn.addEventListener('click', () => {
+  playerOneTurn = true;
+  startBtn.style.display = "flex";
+  gameBox.style.display = "flex";
+  modWin.innerHTML = "";
+  restartBtn.style.display = "none";
+  sumResults.pop();
+  sumResults.shift();
+  gameBoardObj.resetBoard();
+});
 
-  function render2() {
-    nameWinner.innerHTML = "";
-    gameBox.style.display = "none";
-    modWin.append(nameWinner);
-    nameWinner.append(player2.value + " is the winner!");
-    
-  }
+function render() {
+  nameWinner.innerHTML = "";
+  gameBox.style.display = "none";
+  modWin.append(nameWinner);
+  nameWinner.append(player1.value + " is the winner!");
 
-  function render3() {
-    nameWinner.innerHTML = "";
-    gameBox.style.display = "none";
-    modWin.append(nameWinner);
-    nameWinner.append("It is a TIE!");
-  }
+}
 
-  return {
-    render, render2, render3
-  }
-})();
+function render2() {
+  nameWinner.innerHTML = "";
+  gameBox.style.display = "none";
+  modWin.append(nameWinner);
+  nameWinner.append(player2.value + " is the winner!");
+
+}
+
+function render3() {
+  nameWinner.innerHTML = "";
+  gameBox.style.display = "none";
+  modWin.append(nameWinner);
+  nameWinner.append("It is a TIE!");
+}
+
+return {
+  render, render2, render3
+}
+}) ();
 
 
 
